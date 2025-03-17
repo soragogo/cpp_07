@@ -11,6 +11,16 @@ void swap(T &a, T &b) {
     b = tmp;
 }
 
+template <typename T>
+T min(T &a, T&b) {
+    return a < b ? a : b;
+}
+
+template <typename T>
+T max(T &a, T&b) {
+    return a > b ? a : b;
+}
+
 # define END             "\033[0m"
 # define BOLD            "\033[1m"
 # define BLACK           "\033[30m"
