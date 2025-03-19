@@ -1,4 +1,4 @@
-#include "Whatever.hpp"
+#include "whatever.hpp"
 
 // example in the pdf:
 int main( void ) {
