@@ -24,10 +24,10 @@ private:
 
 };
 
-template <class T>
+template <typename T>
 Array<T>::Array() :  _size(0),  _data(NULL) {}
 
-template <class T>
+template <typename T>
 Array<T>::Array(size_t const & size) : _size(size) {
     if (size > 0)
         _data = new T[_size];
@@ -35,13 +35,13 @@ Array<T>::Array(size_t const & size) : _size(size) {
         _data = NULL;
 }
 
-template <class T>
+template <typename T>
 Array<T>::~Array() {
     if (_data)
         delete[] _data;
 }
 
-template <class T>
+template <typename T>
 Array<T>::Array(const Array<T>& array) : _size(array._size) {
     if (_size > 0) {
         _data = new T[_size];
@@ -54,7 +54,7 @@ Array<T>::Array(const Array<T>& array) : _size(array._size) {
     }
 }
 
-template <class T>
+template <typename T>
 Array<T>& Array<T>::operator=(const Array<T>& array) {
     _size = (array._size);
     if (this != &array) {
@@ -70,7 +70,7 @@ Array<T>& Array<T>::operator=(const Array<T>& array) {
     return *this;
 }
 
-template <class T>
+template <typename T>
 T& Array<T>::operator[](size_t const & n) {
     if (n >= _size) {
         throw std::out_of_range("Index out of range");
@@ -78,7 +78,7 @@ T& Array<T>::operator[](size_t const & n) {
     return _data[n];
 }
 
-template <class T>
+template <typename T>
 size_t Array<T>::size() {
     return _size;
 }
