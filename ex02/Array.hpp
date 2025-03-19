@@ -8,64 +8,81 @@
 template <typename T>
 class Array{
 public:
-    Array() :  _size(0),  _data(NULL) {}
+    Array();
+    Array(size_t const & size);
+    ~Array();
+    Array(const Array<T>& array);
 
-    Array(size_t const & size) : _size(size) {
-        if (size > 0)
-            _data = new T[_size];
-        else
-            _data = NULL;
-    }
+    Array<T>& operator=(const Array<T>& array);
+    T& operator[](size_t const & n);
 
-    ~Array() {
-        if (_data)
-            delete[] _data;
-    }
-
-    Array (const Array<T>& array) : _size(array._size) {
-        if (_size > 0) {
-            _data = new T[_size];
-            for (size_t i = 0; i < _size; i++) {
-                _data[i] = array._data[i];
-            }
-
-        } else {
-            _data = NULL;
-        }
-    }
-
-    Array<T>& operator=(const Array<T>& array) {
-        _size = (array._size);
-        if (this != &array) {
-            if (_size > 0) {
-                _data = new T[_size];
-                for (size_t i = 0; i < _size; i++)
-                    _data[i] = array._data[i];
-            }
-            else {
-                _data = NULL;
-            }
-        }
-        return *this;
-    }
-
-    T& operator[](size_t const & n) {
-        if (n >= _size) {
-            throw std::out_of_range("Index out of range");
-        }
-        return _data[n];
-    }
-
-    size_t size() {
-        return _size;
-    }
-
+    size_t size();
 
 private:
     size_t _size;
     T * _data;
 
 };
+
+template <class T>
+Array<T>::Array() :  _size(0),  _data(NULL) {}
+
+template <class T>
+Array<T>::Array(size_t const & size) : _size(size) {
+    if (size > 0)
+        _data = new T[_size];
+    else
+        _data = NULL;
+}
+
+template <class T>
+Array<T>::~Array() {
+    if (_data)
+        delete[] _data;
+}
+
+template <class T>
+Array<T>::Array(const Array<T>& array) : _size(array._size) {
+    if (_size > 0) {
+        _data = new T[_size];
+        for (size_t i = 0; i < _size; i++) {
+            _data[i] = array._data[i];
+        }
+
+    } else {
+        _data = NULL;
+    }
+}
+
+template <class T>
+Array<T>& Array<T>::operator=(const Array<T>& array) {
+    _size = (array._size);
+    if (this != &array) {
+        if (_size > 0) {
+            _data = new T[_size];
+            for (size_t i = 0; i < _size; i++)
+                _data[i] = array._data[i];
+        }
+        else {
+            _data = NULL;
+        }
+    }
+    return *this;
+}
+
+template <class T>
+T& Array<T>::operator[](size_t const & n) {
+    if (n >= _size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return _data[n];
+}
+
+template <class T>
+size_t Array<T>::size() {
+    return _size;
+}
+
 
 
 
