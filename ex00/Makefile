@@ -34,3 +34,5 @@ re:fclean
 	make all
 
 debug: re
+
+.PHONY:		clean fclean all re debug
